@@ -15,11 +15,11 @@ public class ClienteDAO {
 	private EntityManager em;
 	
 	public List<ClienteEntity> getClientes() {
-		return em.createQuery("from Cliente c", ClienteEntity.class).getResultList();
+		return em.createQuery("from cliente c", ClienteEntity.class).getResultList();
 	}
 	
 	public ClienteEntity getCliente(String cpf) {
-		return (ClienteEntity) em.createQuery("from Cliente c where cpf = "+ cpf, ClienteEntity.class);
+		return (ClienteEntity) em.createQuery("from cliente c where cpf = "+ cpf, ClienteEntity.class);
 	}
 	
 	public void insert(ClienteEntity cliente) {

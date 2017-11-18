@@ -20,7 +20,7 @@ public interface ClientesService {
 	
 	
 	@GET
-	@Path("{cpf}")
+	@Path("/{cpf}")
 	@Produces(MediaType.APPLICATION_JSON)
 	String getClienteName(@PathParam("cpf") String cpf);
 	
