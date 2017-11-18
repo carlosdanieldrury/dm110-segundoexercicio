@@ -12,7 +12,7 @@ import br.inatel.dm110.interfaces.ClientesRemote;
 public class ClientesServiceImpl implements ClientesService {
 	
 	
-	@EJB(lookup = "")
+	@EJB(lookup = "java:app/cliente-ejb-0.1-SNAPSHOT/ClienteBeans!br.inatel.dm110.interfaces.ClientesRemote")
 	private ClientesRemote clientesRemote;
 
 

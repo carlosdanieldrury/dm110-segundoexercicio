@@ -7,11 +7,11 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 
 @Entity
-@SequenceGenerator(name = "seq_product", sequenceName = "seq_product", allocationSize = 1)
+@SequenceGenerator(name = "seq_cliente", sequenceName = "seq_cliente", allocationSize = 1)
 public class ClienteEntity {
 
 	@Id
-	@GeneratedValue(generator = "seq_product", strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(generator = "seq_cliente", strategy = GenerationType.SEQUENCE)
 	private int id;
 	private String firstName;
 	private String LastName;
