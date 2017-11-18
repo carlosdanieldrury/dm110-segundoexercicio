@@ -4,9 +4,9 @@ import java.util.List;
 
 public interface Clientes {
 
-	List<Cliente> getClientes();
+	List<String> getClientesNames();
 	
-	Cliente getCliente(String cpf);
+	String getClienteName(String cpf);
 	
-	Cliente createCliente(Cliente cliente);
+	void createCliente(String firstName, String lastName, String cpf);
 }

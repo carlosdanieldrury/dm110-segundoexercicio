@@ -8,7 +8,7 @@ import javax.persistence.SequenceGenerator;
 
 @Entity
 @SequenceGenerator(name = "seq_product", sequenceName = "seq_product", allocationSize = 1)
-public class Cliente {
+public class ClienteEntity {
 
 	@Id
 	@GeneratedValue(generator = "seq_product", strategy = GenerationType.SEQUENCE)

@@ -1,5 +1,6 @@
 package br.inatel.dm110.beans;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -9,7 +10,7 @@ import javax.ejb.Remote;
 import javax.ejb.Stateless;
 
 import br.inatel.dm110.dao.ClienteDAO;
-import br.inatel.dm110.entities.Cliente;
+import br.inatel.dm110.entities.ClienteEntity;
 import br.inatel.dm110.interfaces.ClientesLocal;
 import br.inatel.dm110.interfaces.ClientesRemote;
 
@@ -21,22 +22,41 @@ public class ClienteBeans implements ClientesLocal, ClientesRemote {
 	
 	@EJB
 	private ClienteDAO clienteDAO;
+
+	@Override
+	public List<String> getClientesNames() {
+		
+		List<ClienteEntity> list = clienteDAO.getClientes();
+		
+		List<String> names = new ArrayList<String>();
+		
+		for (ClienteEntity cliente : list) {
+			names.add(cat(cliente.getFirstName(), cliente.getLastName()));
+		}
+		
+		return names;
+	}
+
+	@Override
+	public String getClienteName(String cpf) {
+		ClienteEntity clienteEntity = clienteDAO.getCliente(cpf);
+		String name = clienteEntity.getFirstName() + clienteEntity.getLastName();
+		return name;
+	}
+
+	@Override
+	public void createCliente(String firstName, String lastName, String cpf) {
+		ClienteEntity clienteEntity = new ClienteEntity();
+		clienteEntity.setFirstName(firstName);
+		clienteEntity.setLastName(lastName);
+		clienteEntity.setCpf(cpf);
+		clienteDAO.insert(clienteEntity);
+	}
 	
-	@Override
-	public List<Cliente> getClientes() {
-		return clienteDAO.getClientes().stream().collect(Collectors.toList());
-	}
-
-	@Override
-	public Cliente getCliente(String cpf) {
-		return clienteDAO.getCliente(cpf);
-	}
-
-	@Override
-	public Cliente createCliente(Cliente cliente) {
-		return clienteDAO.insert(cliente);
-	}
-
+	private String cat(String a, String b) {
+        a += b;
+        return a;
+    }
 	
 
 }

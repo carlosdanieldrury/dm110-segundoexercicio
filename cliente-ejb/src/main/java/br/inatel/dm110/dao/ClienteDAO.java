@@ -5,22 +5,22 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import br.inatel.dm110.entities.Cliente;
+import br.inatel.dm110.entities.ClienteEntity;
 
 public class ClienteDAO {
 	
 	@PersistenceContext(unitName = "clientes")
 	private EntityManager em;
 	
-	public List<Cliente> getClientes() {
-		return em.createQuery("from Cliente c", Cliente.class).getResultList();
+	public List<ClienteEntity> getClientes() {
+		return em.createQuery("from Cliente c", ClienteEntity.class).getResultList();
 	}
 	
-	public Cliente getCliente(String cpf) {
-		return (Cliente) em.createQuery("from Cliente c where cpf = "+ cpf, Cliente.class);
+	public ClienteEntity getCliente(String cpf) {
+		return (ClienteEntity) em.createQuery("from Cliente c where cpf = "+ cpf, ClienteEntity.class);
 	}
 	
-	public void insert(Cliente cliente) {
+	public void insert(ClienteEntity cliente) {
 		em.persist(cliente);
 	}
 	

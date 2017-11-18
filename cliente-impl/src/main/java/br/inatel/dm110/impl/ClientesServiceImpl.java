@@ -2,27 +2,33 @@ package br.inatel.dm110.impl;
 
 import java.util.List;
 
-import br.inatel.dm110.api.Cliente;
+import javax.ejb.EJB;
+import javax.enterprise.context.RequestScoped;
+
 import br.inatel.dm110.api.ClientesService;
+import br.inatel.dm110.interfaces.ClientesRemote;
 
+@RequestScoped
 public class ClientesServiceImpl implements ClientesService {
+	
+	
+	@EJB(lookup = "")
+	private ClientesRemote clientesRemote;
+
 
 	@Override
-	public List<Cliente> getClientes() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<String> getClientesNames() {
+		return clientesRemote.getClientesNames();
 	}
 
 	@Override
-	public Cliente getCliente(String cpf) {
-		// TODO Auto-generated method stub
-		return null;
+	public String getClienteName(String cpf) {
+		return clientesRemote.getClienteName(cpf);
 	}
 
 	@Override
-	public Cliente createCliente(Cliente cliente) {
-		// TODO Auto-generated method stub
-		return null;
+	public void createCliente(String firstName, String lastName, String cpf) {
+		clientesRemote.createCliente(firstName, lastName, cpf);
 	}
 
 }
