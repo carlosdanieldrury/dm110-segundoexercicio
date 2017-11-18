@@ -8,13 +8,13 @@ import javax.persistence.SequenceGenerator;
 
 @Entity
 @SequenceGenerator(name = "seq_cliente", sequenceName = "seq_cliente", allocationSize = 1)
-public class ClienteEntity {
+public class Cliente {
 
 	@Id
 	@GeneratedValue(generator = "seq_cliente", strategy = GenerationType.SEQUENCE)
 	private int id;
 	private String firstName;
-	private String LastName;
+	private String lastName;
 	private String cpf;
 	
 	
@@ -31,10 +31,10 @@ public class ClienteEntity {
 		this.firstName = firstName;
 	}
 	public String getLastName() {
-		return LastName;
+		return lastName;
 	}
 	public void setLastName(String lastName) {
-		LastName = lastName;
+		this.lastName = lastName;
 	}
 	public String getCpf() {
 		return cpf;

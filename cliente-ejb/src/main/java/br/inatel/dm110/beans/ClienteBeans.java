@@ -10,7 +10,7 @@ import javax.ejb.Remote;
 import javax.ejb.Stateless;
 
 import br.inatel.dm110.dao.ClienteDAO;
-import br.inatel.dm110.entities.ClienteEntity;
+import br.inatel.dm110.entities.Cliente;
 import br.inatel.dm110.interfaces.ClientesLocal;
 import br.inatel.dm110.interfaces.ClientesRemote;
 
@@ -26,11 +26,11 @@ public class ClienteBeans implements ClientesLocal, ClientesRemote {
 	@Override
 	public List<String> getClientesNames() {
 		
-		List<ClienteEntity> list = clienteDAO.getClientes();
+		List<Cliente> list = clienteDAO.getClientes();
 		
 		List<String> names = new ArrayList<String>();
 		
-		for (ClienteEntity cliente : list) {
+		for (Cliente cliente : list) {
 			names.add(cat(cliente.getFirstName(), cliente.getLastName()));
 		}
 		
@@ -39,14 +39,14 @@ public class ClienteBeans implements ClientesLocal, ClientesRemote {
 
 	@Override
 	public String getClienteName(String cpf) {
-		ClienteEntity clienteEntity = clienteDAO.getCliente(cpf);
+		Cliente clienteEntity = clienteDAO.getCliente(cpf);
 		String name = clienteEntity.getFirstName() + clienteEntity.getLastName();
 		return name;
 	}
 
 	@Override
 	public void createCliente(String firstName, String lastName, String cpf) {
-		ClienteEntity clienteEntity = new ClienteEntity();
+		Cliente clienteEntity = new Cliente();
 		clienteEntity.setFirstName(firstName);
 		clienteEntity.setLastName(lastName);
 		clienteEntity.setCpf(cpf);

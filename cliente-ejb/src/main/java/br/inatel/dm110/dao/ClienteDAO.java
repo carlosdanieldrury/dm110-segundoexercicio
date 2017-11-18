@@ -6,7 +6,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import br.inatel.dm110.entities.ClienteEntity;
+import br.inatel.dm110.entities.Cliente;
 
 @Stateless
 public class ClienteDAO {
@@ -14,15 +14,15 @@ public class ClienteDAO {
 	@PersistenceContext(unitName = "cliente")
 	private EntityManager em;
 	
-	public List<ClienteEntity> getClientes() {
-		return em.createQuery("from cliente c", ClienteEntity.class).getResultList();
+	public List<Cliente> getClientes() {
+		return em.createQuery("from Cliente c", Cliente.class).getResultList();
 	}
 	
-	public ClienteEntity getCliente(String cpf) {
-		return (ClienteEntity) em.createQuery("from cliente c where cpf = "+ cpf, ClienteEntity.class);
+	public Cliente getCliente(String cpf) {
+		return em.createQuery("from Cliente c where cpf = "+ cpf, Cliente.class).getSingleResult();
 	}
 	
-	public void insert(ClienteEntity cliente) {
+	public void insert(Cliente cliente) {
 		em.persist(cliente);
 	}
 	

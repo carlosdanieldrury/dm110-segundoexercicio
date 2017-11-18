@@ -25,7 +25,6 @@ public interface ClientesService {
 	String getClienteName(@PathParam("cpf") String cpf);
 	
 	@POST
-	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	void createCliente(@FormParam("firstName") String firstName, 
 			@FormParam("lastName") String lastName,
